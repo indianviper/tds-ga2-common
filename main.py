@@ -230,7 +230,6 @@ def effective_config(request: Request, set: Optional[List[str]] = Query(default=
     dotenv_layer = {
         "APP_DEBUG": "false",
         "APP_LOG_LEVEL": "warning",
-        "NUM_WORKERS": "2",
     }
     for raw_key, raw_value in dotenv_layer.items():
         key = raw_key
