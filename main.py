@@ -75,7 +75,7 @@ def add_cors_headers(response: Response, request: Request):
 
     allow_origin = None
     if path.startswith("/stats"):
-        if origin == STATS_ALLOWED_ORIGIN:
+        if origin in {STATS_ALLOWED_ORIGIN, EXAM_ORIGIN}:
             allow_origin = origin
     elif path.startswith("/ping"):
         if origin in {PING_ALLOWED_ORIGIN, EXAM_ORIGIN}:
