@@ -92,6 +92,9 @@ def add_cors_headers(response: Response, request: Request):
             "Content-Type, Authorization, X-API-Key, X-Client-Id, "
             "Idempotency-Key, X-Request-ID"
         )
+        response.headers["Access-Control-Expose-Headers"] = (
+            "Retry-After, X-Request-ID, X-Process-Time"
+        )
         response.headers["Access-Control-Max-Age"] = "600"
     return response
 
@@ -231,6 +234,7 @@ def effective_config(request: Request, set: Optional[List[str]] = Query(default=
         "APP_DEBUG": "false",
         "APP_LOG_LEVEL": "warning",
     }
+
     for raw_key, raw_value in dotenv_layer.items():
         key = raw_key
         if raw_key.startswith("APP_"):
